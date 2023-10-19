@@ -1,4 +1,5 @@
-# PRfunction myFunction() {
+# PR
+function myFunction() {
   const students = [
     {
       name: 'Микола',
