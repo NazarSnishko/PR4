@@ -1,0 +1,13 @@
+# PR4
+function sendEmail() {
+  var recipient = "m.v.boiko@rcit.ukr.education";
+  var subject = "Практична 4";
+  var body = "Сніжко Назарій";
+
+  // Відправити лист
+  MailApp.sendEmail(recipient, subject, body);
+
+  // Залогувати тему та одержувача листа
+  Logger.log("Тема: " + subject);
+  Logger.log("Одержувач: " + recipient);
+}
