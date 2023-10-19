@@ -1,0 +1,115 @@
+# PRfunction myFunction() {
+  const students = [
+    {
+      name: 'Микола',
+      LastName: 'Шепель',
+      YearOfBirth: '2005',
+      Disciplines: {
+        PKI: 4,
+        CloudTechnologies: 5,
+        IZVP: 5
+      },
+    },
+    {
+      name: 'Павло',
+      LastName: 'Жданюк',
+      YearOfBirth: '2005',
+      Disciplines: {
+        PKI: 5,
+        CloudTechnologies: 3,
+        IZVP: 3
+      },
+    },
+    {
+      name: 'Денис',
+      LastName: 'Корольчук',
+      YearOfBirth: '2004',
+      Disciplines: {
+        PKI: 3,
+        CloudTechnologies: 3,
+        IZVP: 3
+      },
+    },
+    {
+      name: 'Дмитро',
+      LastName: 'Єніч',
+      YearOfBirth: '2004',
+      Disciplines: {
+        PKI: 3,
+        CloudTechnologies: 3,
+        IZVP: 3
+      },
+    },
+    {
+      name: 'Дмитро',
+      LastName: 'Простотішин',
+      YearOfBirth: '2005',
+      Disciplines: {
+        PKI: 3,
+        CloudTechnologies: 4,
+        IZVP: 3
+      },
+    },
+    {
+      name: 'Дмитро',
+      LastName: 'Сеген',
+      YearOfBirth: '2005',
+      Disciplines: {
+        PKI: 3,
+        CloudTechnologies: 4,
+        IZVP: 3
+      },
+    },
+  ];
+
+  function InformationStudent(studentArray) {
+    for (const student of studentArray) {
+      const GPA = Object.values(student.Disciplines).reduce((suma, bal) => suma + bal, 0) / Object.keys(student.Disciplines).length;
+      console.log(`Ім'я: ${student.name}, Прізвище: ${student.LastName}, Рік народження: ${student.YearOfBirth}, Середній бал: ${GPA}`);
+    }
+  }
+
+  function studentGPA(studentArray, nameDiscipline) {
+    const Vstudent = studentArray.slice().sort((a, b) => b.Disciplines[nameDiscipline] - a.Disciplines[nameDiscipline]);
+
+    console.log(`Студенти за оцінкою за ${nameDiscipline}:`);
+    for (const student of Vstudent) {
+      console.log(`Ім'я: ${student.name}, Прізвище: ${student.LastName}, Оцінка за ${nameDiscipline}: ${student.Disciplines[nameDiscipline]}`);
+    }
+  }
+
+  function studentAverageBal(studentArray, GPA) {
+    console.log(`Студенти з середнім балом не нижче ${GPA}:`);
+    for (const student of studentArray) {
+        if (student.Disciplines) { // Перевірка, чи існує об'єкт Disciplines
+            const averageBalStudent = Object.values(student.Disciplines).reduce((suma, bal) => suma + bal, 0) / Object.keys(student.Disciplines).length;
+            if (GPA >= GPA) {
+                console.log(`Ім'я: ${student.name}, Прізвище: ${student.LastName}, Середній бал: ${GPA}`);
+            }
+        } else {
+            console.log(`Студент ${student.name} не має даних про дисципліни.`);
+        }
+    }
+}
+
+  function ratins(studentArray, name, Disciplines) {
+    for (const student of studentArray) {
+      if (student.name === name) {
+        const bal = student.Disciplines[Disciplines];
+        if (bal !== undefined) {
+          console.log(`Студент: ${name}, Дисципліна: ${Disciplines}, Оцінка: ${bal}`);
+        } else {
+          console.log(`Студент ${name} не має оцінки з дисципліни ${Disciplines}.`);
+        }
+        return;
+      }
+    }
+    console.log(`Студент з іменем ${name} не знайдений.`);
+  }
+
+  // Виклики функцій
+  InformationStudent(students);
+  studentGPA(students, 'PKI');
+  studentAverageBal(students, 4);
+  ratins(students, 'Микола', 'PKI');
+}
